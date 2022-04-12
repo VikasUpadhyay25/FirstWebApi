@@ -7,19 +7,38 @@ using System.Web.Http;
 
 namespace FirstWebApi.Controllers
 {
+    [RoutePrefix("ValueApi")]
+
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        [Route("Default")]
+        [HttpGet]
+        public IEnumerable<string> Default()
         {
             return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         [HttpGet]
-        public string SearchProvider(int id)
+        [Route("SearchOrders/{id}")]
+        public string SearchOrders(int id)
         {
-            return "value";
+            return "Result :" + id.ToString();
+        }
+
+        [HttpGet]
+        [Route("SearchTypes")]
+        public string SearchTypes()
+        {
+            return "SearchTypes";
+        }
+
+        [HttpGet]
+        [Route("Search")]
+        public string SearchProvider()
+        {
+            return "Search";
         }
 
         // POST api/values
@@ -27,14 +46,14 @@ namespace FirstWebApi.Controllers
         {
         }
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/values/5
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //public void Delete(int id)
+        //{
+        //}
     }
 }
