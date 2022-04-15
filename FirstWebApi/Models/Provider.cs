@@ -16,28 +16,57 @@ namespace FirstWebApi.Models
 
         private static string connectionString = @"Data Source=DESKTOP-37UDTFK\VIKASSQL;Initial Catalog=ProductDatabase;User ID=mvcdev;Password=testing";
 
-        internal static object GetProvider()
+        public static List<Provider> GetProviderData()
         {
-            throw new NotImplementedException();
-        }
-
-        public static DataSet GetProviderData()
-        {
-
+            List<Provider> p = new List<Provider>();
             SqlConnection conn = new SqlConnection(connectionString);
-
 
             conn.Open();
             SqlCommand command = new SqlCommand("select * from Provider", conn);
             SqlDataAdapter adaptor = new SqlDataAdapter(command);
             DataSet ds = new DataSet();
+
+
             adaptor.Fill(ds);
-            return ds;
+            foreach (DataRow data in ds.Tables[0].Rows)
+            {
+                p.Add(new Provider()
+                {
+                    ProviderId = Convert.ToInt32(data[0].ToString()),
+                    ProviderName = data[1].ToString(),
+                    ProviderType = data[2].ToString()
+                });
+            }
+
+            return p;
         }
 
-        internal void InsertProvider(Provider p)
+        public static Provider GetProviderDataByProviderId(int id)
         {
+            List<Provider> p = new List<Provider>();
+            SqlConnection conn = new SqlConnection(connectionString);
 
+            conn.Open();
+            SqlCommand command = new SqlCommand($"select * from Provider where providerid = {id}", conn);
+            SqlDataAdapter adaptor = new SqlDataAdapter(command);
+            DataSet ds = new DataSet();
+            adaptor.Fill(ds);
+
+            foreach (DataRow data in ds.Tables[0].Rows)
+            {
+                p.Add(new Provider()
+                {
+                    ProviderId = Convert.ToInt32(data[0].ToString()),
+                    ProviderName = data[1].ToString(),
+                    ProviderType = data[2].ToString()
+                });
+            }
+
+            return p.FirstOrDefault();
+        }
+
+        internal static void InsertProvider(Provider p)
+        {
             SqlConnection conn = new SqlConnection(connectionString);
 
             string insertCmd = $"insert into Provider (ProviderName, ProviderType) values ('{p.ProviderName}','{p.ProviderType}')";
@@ -46,9 +75,8 @@ namespace FirstWebApi.Models
             command.ExecuteNonQuery();
         }
 
-        internal void UpdateProvider(Provider p)
+        internal static void UpdateProvider(Provider p)
         {
-
             SqlConnection conn = new SqlConnection(connectionString);
 
             string insertCmd = $"update provider set providertype='{p.ProviderType}', providername='{p.ProviderName}' where providerid={p.ProviderId}";
@@ -66,18 +94,5 @@ namespace FirstWebApi.Models
             SqlCommand command = new SqlCommand(insertCmd, conn);
             command.ExecuteNonQuery();
         }
-
-        public static DataSet GetProviderDataByProviderId(int id)
-        {
-
-            SqlConnection conn = new SqlConnection(connectionString);
-
-            conn.Open();
-            SqlCommand command = new SqlCommand($"select * from Provider where providerid = {id}", conn);
-            SqlDataAdapter adaptor = new SqlDataAdapter(command);
-            DataSet ds = new DataSet();
-            adaptor.Fill(ds);
-            return ds;
-        }              
     }
 }
