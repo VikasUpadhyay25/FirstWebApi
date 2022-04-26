@@ -6,5 +6,5 @@ console.log(i++);
 console.log(i);
 
 console.log(++j);
-//let z = i / j;
-//console.log(z);
+let z = i / j;
+console.log(z);

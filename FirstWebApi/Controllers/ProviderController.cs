@@ -37,13 +37,14 @@ namespace FirstWebApi.Controllers
 
     public class ProviderController : ApiController
     {
+        [Authorize(Users ="admin")]
         public List<Provider> GetProviders()
         {
             return Provider.GetProviderData();
         }
 
 
-
+        [Authorize]
         public Provider GetProviderById(int id)
         {
             return Provider.GetProviderDataByProviderId(id);
@@ -59,7 +60,7 @@ namespace FirstWebApi.Controllers
 
 
         [HttpPost]
-        public void AddProvider([FromUri] Provider p)
+        public void AddProvider([FromBody] Provider p)
         {
             //var provider = Newtonsoft.Json.JsonConvert.DeserializeObject<Provider>(p.ToString());
 
@@ -81,7 +82,7 @@ namespace FirstWebApi.Controllers
         }
 
         [HttpDelete]
-        public void UpdateProvider(int id)
+        public void DeleteProvider(int id)
         {
             Provider.DeleteProvider(id);
         }
