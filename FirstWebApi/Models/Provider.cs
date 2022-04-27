@@ -20,32 +20,30 @@ namespace FirstWebApi.Models
         public static List<Provider> GetProviderData()
         {
             List<Provider> p = new List<Provider>();
-            //SqlConnection conn = new SqlConnection(connectionString);
-
-            //conn.Open();
-            //SqlCommand command = new SqlCommand("select * from Provider", conn);
-            //SqlDataAdapter adaptor = new SqlDataAdapter(command);
-            //DataSet ds = new DataSet();
 
 
-            //adaptor.Fill(ds);
+            SqlConnection conn = new SqlConnection(connectionString);
+
+            conn.Open();
+            SqlCommand command = new SqlCommand("select * from Provider", conn);
+            SqlDataAdapter adaptor = new SqlDataAdapter(command);
+            DataSet ds = new DataSet();
 
 
+            adaptor.Fill(ds);
 
-            ProductDatabaseEntities entity = new ProductDatabaseEntities();
-            var result = entity.Providers.ToList();
-            
-            
-            
-            //foreach (DataRow data in ds.Tables[0].Rows)
-            //{
-            //    p.Add(new Provider()
-            //    {
-            //        ProviderId = Convert.ToInt32(data[0].ToString()),
-            //        ProviderName = data[1].ToString(),
-            //        ProviderType = data[2].ToString()
-            //    });
-            //}
+            foreach (DataRow data in ds.Tables[0].Rows)
+            {
+                p.Add(new Provider()
+                {
+                    ProviderId = Convert.ToInt32(data[0].ToString()),
+                    ProviderName = data[1].ToString(),
+                    ProviderType = data[2].ToString()
+                });
+            }
+
+            //ProductDatabaseEntities entity = new ProductDatabaseEntities();
+            //var result = entity.Providers.ToList();
 
             return p;
         }

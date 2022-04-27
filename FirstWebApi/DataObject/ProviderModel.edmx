@@ -37,7 +37,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityContainer Name="ProductDatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="ProductDatabaseEntities5" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Providers" EntityType="Self.Provider" />
         </EntityContainer>
       </Schema>
@@ -45,7 +45,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="ProductDatabaseModelStoreContainer" CdmEntityContainer="ProductDatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="ProductDatabaseModelStoreContainer" CdmEntityContainer="ProductDatabaseEntities5">
           <EntitySetMapping Name="Providers">
             <EntityTypeMapping TypeName="ProductDatabaseModel.Provider">
               <MappingFragment StoreEntitySet="Provider">

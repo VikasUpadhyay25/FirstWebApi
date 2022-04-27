@@ -37,7 +37,7 @@ namespace FirstWebApi.Controllers
 
     public class ProviderController : ApiController
     {
-        [Authorize(Users ="admin")]
+        [Authorize]
         public List<Provider> GetProviders()
         {
             return Provider.GetProviderData();
