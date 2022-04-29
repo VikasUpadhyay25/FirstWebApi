@@ -184,29 +184,14 @@
       <DependentUpon>ProviderModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="DataObject\User.cs">
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataObject\UserModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataObject\UserModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataObject\UserModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>UserModel.edmx</DependentUpon>
+      <DependentUpon>ProviderModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Handlers\ApiSecurityAuthorizeAttribute.cs" />
     <Compile Include="Handlers\ApiSecurityHandler.cs" />
-    <Compile Include="Models\Provider.cs" />
+    <Compile Include="Models\ProviderModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -225,16 +210,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ProviderModel.edmx</DependentUpon>
       <LastGenOutput>ProviderModel.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataObject\UserModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserModel.edmx</DependentUpon>
-      <LastGenOutput>UserModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataObject\UserModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>UserModel.edmx</DependentUpon>
-      <LastGenOutput>UserModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -267,13 +242,6 @@
     </EntityDeploy>
     <Content Include="DataObject\ProviderModel.edmx.diagram">
       <DependentUpon>ProviderModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="DataObject\UserModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataObject\UserModel.edmx.diagram">
-      <DependentUpon>UserModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

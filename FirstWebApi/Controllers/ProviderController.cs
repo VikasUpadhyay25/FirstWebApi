@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FirstWebApi.Handlers;
 using FirstWebApi.Models;
 using Newtonsoft;
 using Newtonsoft.Json.Linq;
@@ -37,17 +38,19 @@ namespace FirstWebApi.Controllers
 
     public class ProviderController : ApiController
     {
-        [Authorize]
-        public List<Provider> GetProviders()
+        
+        //[Authorize(Users = "ABC")]
+        [ApiSecurityAuthorize(Roles = "user,admin")]
+        public List<ProviderModels> GetProviders()
         {
-            return Provider.GetProviderData();
+            return ProviderModels.GetProviderData();
         }
 
 
-        [Authorize]
-        public Provider GetProviderById(int id)
+        [ApiSecurityAuthorize(Roles = "user,admin")]
+        public ProviderModels GetProviderById(int id)
         {
-            return Provider.GetProviderDataByProviderId(id);
+            return ProviderModels.GetProviderDataByProviderId(id);
         }
 
         //[HttpPost]
@@ -60,11 +63,12 @@ namespace FirstWebApi.Controllers
 
 
         [HttpPost]
-        public void AddProvider([FromBody] Provider p)
+        [ApiSecurityAuthorize(Roles = "user,admin")]
+        public void AddProvider([FromBody] ProviderModels p)
         {
             //var provider = Newtonsoft.Json.JsonConvert.DeserializeObject<Provider>(p.ToString());
 
-            Provider.InsertProvider(p);
+            ProviderModels.InsertProvider(p);
         }
 
         //[HttpPost]
@@ -76,15 +80,17 @@ namespace FirstWebApi.Controllers
         //}
 
         [HttpPatch]
-        public void UpdateProvider([FromBody] Provider P)
+        [ApiSecurityAuthorize(Roles = "admin")]
+        public void UpdateProvider([FromBody] ProviderModels P)
         {
-            Provider.UpdateProvider(P);
+            ProviderModels.UpdateProvider(P);
         }
 
         [HttpDelete]
+        [ApiSecurityAuthorize(Roles = "admin")]
         public void DeleteProvider(int id)
         {
-            Provider.DeleteProvider(id);
+            ProviderModels.DeleteProvider(id);
         }
 
     }

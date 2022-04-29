@@ -9,7 +9,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace FirstWebApi.Handlers
+namespace WebApi.Handlers
 {
     public class ApiSecurityHandler : DelegatingHandler
     {
@@ -31,9 +31,9 @@ namespace FirstWebApi.Handlers
 
         private string ValidateApiKey(string apiKey)
         {
-            ProductDatabaseEntities5 entity = new ProductDatabaseEntities5();
-
-            string user = entity.Users.Where(x => x.UserKey == apiKey).FirstOrDefault().UserName;
+            ProductDatabaseEntities entity = new ProductDatabaseEntities();
+            var users = entity.Users.Where(x => x.UserKey == apiKey).ToList();
+            string user = users.FirstOrDefault().UserName;
 
             return user;
         }
